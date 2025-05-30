@@ -44,6 +44,8 @@ jobs:
         
     - name: Generar documentació PyDoc
       working-directory: Projecte Django/cotxes
+      env:
+        DJANGO_SETTINGS_MODULE: Projecte_Django_Junjie_Wan.settings
       run: |
         mkdir -p ../../docs
         python -m pydoc -w models
