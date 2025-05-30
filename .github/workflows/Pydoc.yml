@@ -43,7 +43,7 @@ jobs:
         python manage.py test cotxes
         
     - name: Generar documentació PyDoc
-      working-directory: Projecte_Django_Junjie_Wang
+      working-directory: Projecte Django
       run: |
         mkdir -p ../docs
         python -m pydoc -w .
