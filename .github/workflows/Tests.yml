@@ -32,10 +32,12 @@ jobs:
         pip install -r requirements.txt
 
     - name: Executar migracions
+      working-directory: Projecte Django
       run: |
         python manage.py makemigrations
         python manage.py migrate
 
     - name: Executar tests unitaris
+      working-directory: Projecte Django
       run: |
         python manage.py test
