@@ -26,6 +26,7 @@ jobs:
       run: unzip Projecte_Django.zip
 
     - name: Instal·lar dependències
+      working-directory: Projecte_Django
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
