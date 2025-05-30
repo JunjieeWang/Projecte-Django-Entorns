@@ -43,14 +43,14 @@ jobs:
         python manage.py test cotxes
         
     - name: Generar documentació PyDoc
-      working-directory: Projecte Django
+      working-directory: Projecte Django/cotxes
       run: |
-        mkdir -p ../docs
+        mkdir -p ../../docs
         python -m pydoc -w models
         python -m pydoc -w views
         python -m pydoc -w urls
         python -m pydoc -w tests
-        mv *.html ../docs/
+        mv *.html ../../docs/
 
 
     - name: Publicar a GitHub Pages
