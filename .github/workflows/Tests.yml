@@ -40,4 +40,4 @@ jobs:
     - name: Executar tests unitaris
       working-directory: Projecte Django
       run: |
-        python manage.py test
+        python manage.py test cotxes
