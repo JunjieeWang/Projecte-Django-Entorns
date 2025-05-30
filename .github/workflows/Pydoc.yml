@@ -46,8 +46,12 @@ jobs:
       working-directory: Projecte Django
       run: |
         mkdir -p ../docs
-        python -m pydoc -w .
+        python -m pydoc -w models
+        python -m pydoc -w views
+        python -m pydoc -w urls
+        python -m pydoc -w tests
         mv *.html ../docs/
+
 
     - name: Publicar a GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
