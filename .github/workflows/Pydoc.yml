@@ -41,3 +41,16 @@ jobs:
       working-directory: Projecte Django
       run: |
         python manage.py test cotxes
+        
+    - name: Generar documentació PyDoc
+      working-directory: Projecte_Django_Junjie_Wang
+      run: |
+        mkdir -p ../docs
+        python -m pydoc -w .
+        mv *.html ../docs/
+
+    - name: Publicar a GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
