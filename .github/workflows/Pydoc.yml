@@ -27,7 +27,7 @@ jobs:
         unzip Projecte_Django.zip
         mv 'Projecte Django' Projecte_Django_Junjie_Wang
 
-    - name: Instal·lar dependències del projecte
+    - name: Instal·lar Django
       working-directory: Projecte_Django_Junjie_Wang
       run: pip install django
 
@@ -38,6 +38,11 @@ jobs:
         export DJANGO_SETTINGS_MODULE=Projecte_Django_Junjie_Wang.settings
         export PYTHONPATH=$(pwd)
         python -c "import os, django, pydoc; os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Projecte_Django_Junjie_Wang.settings'); django.setup(); pydoc.writedoc('cotxes.models')"
+
+    - name: Verificar si s'ha generat la documentació
+      run: |
+        echo "Contingut de la carpeta docs:"
+        ls -l docs || echo "⚠️ No s'ha trobat la carpeta docs!"
 
     - name: Publicar a GitHub Pages (gh-pages)
       uses: peaceiris/actions-gh-pages@v3
