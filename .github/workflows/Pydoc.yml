@@ -25,8 +25,7 @@ jobs:
     - name: Descomprimir projecte
       run: |
         unzip Projecte_Django.zip
-        ls -R  # llista contingut per veure com es diu la carpeta
-        mv Projecte_Django_Junjie_Wang-main Projecte_Django_Junjie_Wang
+        mv 'Projecte Django' Projecte_Django_Junjie_Wang
 
     - name: Generar documentació PyDoc
       working-directory: Projecte_Django_Junjie_Wang
