@@ -27,6 +27,10 @@ jobs:
         unzip Projecte_Django.zip
         mv 'Projecte Django' Projecte_Django_Junjie_Wang
 
+    - name: Instal·lar dependències del projecte
+      working-directory: Projecte_Django_Junjie_Wang
+      run: pip install django
+
     - name: Generar documentació PyDoc
       working-directory: Projecte_Django_Junjie_Wang
       run: |
