@@ -1,4 +1,4 @@
-name: Django Tests
+name: Generar i Publicar Documentació PyDoc
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  build-docs:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,42 +19,26 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Instal·lar unzip (si cal)
+    - name: Instal·lar unzip
       run: sudo apt-get install unzip
 
     - name: Descomprimir projecte
       run: unzip Projecte_Django.zip
-      
-    - name: Instal·lar dependències
-      working-directory: Projecte Django
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
 
-    - name: Executar migracions
-      working-directory: Projecte Django
-      run: |
-        python manage.py makemigrations
-        python manage.py migrate
-        
     - name: Generar documentació PyDoc
-      working-directory: Projecte Django/cotxes
+      working-directory: Projecte_Django_Junjie_Wang
       run: |
-        mkdir -p ../../docs
-        python -m pydoc -w models
-        python -m pydoc -w views
-        python -m pydoc -w urls
-        python -m pydoc -w tests
-        mv *.html ../../docs/
-        
-    - name: Publicar a GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
+        mkdir -p ../docs
+        export DJANGO_SETTINGS_MODULE=Projecte_Django_Junjie_Wang.settings
+        export PYTHONPATH=$(pwd)
+        python -c "
+        import os, django, pydoc
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Projecte_Django_Junjie_Wang.settings')
+        django.setup()
+        pydoc.writedoc('cotxes.models')
+        "
 
-
-    - name: Publicar a GitHub Pages
+    - name: Publicar a GitHub Pages (gh-pages)
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
