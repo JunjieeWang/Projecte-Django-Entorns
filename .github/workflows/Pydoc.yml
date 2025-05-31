@@ -26,7 +26,7 @@ jobs:
       run: unzip Projecte_Django.zip
         
     - name: Generar documentació PyDoc
-      working-directory: Projecte Django/cotxes
+      working-directory: cotxes
       env:
         DJANGO_SETTINGS_MODULE: Projecte_Django_Junjie_Wang.settings
         PYTHONPATH: ${{ github.workspace }}/Projecte_Django_Junjie_Wang
