@@ -48,6 +48,13 @@ jobs:
             except Exception as e:
                 print(f'⚠️ Error documentant {module}:', e)
         "
+        mv *.html ../docs/
+        echo "<h1>Documentació</h1><ul>" > ../docs/index.html
+        for f in ../docs/*.html; do
+          fname=$(basename $f)
+          echo "<li><a href='$fname'>$fname</a></li>" >> ../docs/index.html
+        done
+        echo "</ul>" >> ../docs/index.html
 
     - name: Mostrar fitxers generats
       run: ls -l docs
